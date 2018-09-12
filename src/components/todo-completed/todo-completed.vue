@@ -1,7 +1,7 @@
 <template>
-    <div class="todo-completed">
+    <div class="todo-completed" @mouseenter="isFocus = true" @mouseleave="isFocus = false">
         <div class="icon-check">
-            <Icon type="ios-checkmark-circle-outline" size="30" color="#fff" />
+            <Icon :type="isFocus ? 'md-trash' : 'ios-checkmark-circle-outline'" size="30" color="#fff" />
         </div>
         <div class="content">学习 React</div>
     </div>
@@ -9,7 +9,12 @@
 
 <script>
   export default {
-    name: 'todo-completed'
+    name: 'todo-completed',
+    data () {
+      return {
+        isFocus: false
+      }
+    }
   }
 </script>
 

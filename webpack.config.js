@@ -52,7 +52,10 @@ let config = {
           }, {
             loader: 'postcss-loader'
           }, {
-            loader: 'less-loader'
+            loader: 'less-loader',
+            options: {
+              javascriptEnabled: true
+            }
           }],
           fallback: 'style-loader'
         })
