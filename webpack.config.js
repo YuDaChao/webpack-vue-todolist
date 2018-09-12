@@ -2,6 +2,15 @@ const path = require('path')
 const webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+
+const extractLess = new ExtractTextPlugin({
+  filename: '[name].[contenthash].css',
+  disable: process.env.NODE_ENV === 'development' // 在开发环境下不使用
+})
+
+const isDev = process.env.NODE_ENV === 'development'
+
 
 let config = {
   target: 'web',
@@ -21,18 +30,42 @@ let config = {
       {
         test: /\.jsx?$/,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.less$/,
+        use: extractLess.extract({
+          use: [{
+            loader: 'css-loader'
+          }, {
+            loader: 'less-loader'
+          }],
+          fallback: 'style-loader'
+        })
       }
     ]
   },
   plugins: [
     new VueLoaderPlugin(),
+    extractLess,
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: isDev ? '"development"' : '"production"'
+      }
+    }),
     new HtmlPlugin({
       template: path.join(__dirname, 'index.html')
-    }),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.HotModuleReplacementPlugin()
-  ],
-  devServer: {
+    })
+  ]
+}
+
+// 在开发环境下 做额外处理
+if (isDev) {
+  config.devtool = '#cheap-module-eval-source-map'
+  config.devServer = {
     port: 8000,
     host: '0.0.0.0',
     overlay: {
@@ -43,6 +76,10 @@ let config = {
       index: path.join(__dirname, 'dist/index.html')
     }
   }
+  config.plugins.push(
+    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.HotModuleReplacementPlugin()
+  )
 }
 
 
