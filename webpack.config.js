@@ -33,13 +33,24 @@ let config = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1
+            }
+          },
+          'postcss-loader'
+        ]
       },
       {
         test: /\.less$/,
         use: extractLess.extract({
           use: [{
             loader: 'css-loader'
+          }, {
+            loader: 'postcss-loader'
           }, {
             loader: 'less-loader'
           }],

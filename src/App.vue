@@ -16,5 +16,6 @@
 <style scoped lang="less">
     .text {
         color: #000;
+        display: flex;
     }
 </style>
