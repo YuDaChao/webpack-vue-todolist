@@ -1,21 +1,24 @@
 <template>
-    <div class="text">{{text}}</div>
+    <div class="app">
+        <todo></todo>
+    </div>
 </template>
 
 <script>
+  import Todo from './pages/todo'
   export default {
     name: 'App',
-    data() {
-      return {
-        text: 'this is a app'
-      }
+    components: {
+      Todo
     }
   }
 </script>
 
 <style scoped lang="less">
-    .text {
-        color: #000;
-        display: flex;
+    .app {
+        width: 100%;
+        height: 100%;
+        background: url("../static/images/bg.gif") no-repeat center;
+        background-size: cover;
     }
 </style>
