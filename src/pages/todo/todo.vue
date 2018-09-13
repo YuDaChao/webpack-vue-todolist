@@ -24,6 +24,7 @@
 </template>
 
 <script>
+  import { mapMutations } from 'vuex'
   import TodoHeader from '../../components/todo-header'
   import TodoItem from '../../components/todo-item'
   import TodoCompleted from '../../components/todo-completed'
@@ -33,6 +34,24 @@
       TodoHeader,
       TodoItem,
       TodoCompleted
+    },
+    mounted () {
+      this.add_todo({
+        id: 1,
+        title: '学习Vue',
+        desc: 'vue是个好东西',
+        done: false
+      })
+      this.add_todo({
+        id: 2,
+        title: '学习Vue',
+        desc: 'vue是个好东西',
+        done: false
+      })
+      this.done_todo(1)
+    },
+    methods: {
+      ...mapMutations(['add_todo', 'done_todo'])
     }
   }
 </script>

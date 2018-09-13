@@ -3,9 +3,12 @@ import { Card, Icon, Checkbox, Button } from 'iview';
 import 'iview/dist/styles/iview.css';
 import '../static/theme/theme.less'
 
+import store from './store'
+
 import '../static/css/reset.css'
 
 import App from './App.vue'
+
 
 // Vue.use(iView)
 
@@ -16,5 +19,6 @@ Vue.component('Button', Button)
 
 new Vue({
   el: '#app',
+  store,
   render: h => h(App)
 })

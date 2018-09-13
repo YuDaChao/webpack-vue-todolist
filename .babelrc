@@ -1,6 +1,12 @@
 {
-  "plugins": [["import", {
-    "libraryName": "iview",
-    "libraryDirectory": "src/components"
-  }]]
+  "plugins": [
+    "transform-object-rest-spread",
+    [
+      "import",
+      {
+        "libraryName": "iview",
+        "libraryDirectory": "src/components"
+      }
+    ]
+  ]
 }
