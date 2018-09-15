@@ -3,11 +3,8 @@ const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
 const base = require('./webpack.base')
 
-module.exports = webpackMerge(base, {
+const config = webpackMerge(base, {
   devtool: '#cheap-module-eval-source-map',
-  entry: {
-    app: path.join(__dirname, '../src/main.js')
-  },
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin()
@@ -25,3 +22,4 @@ module.exports = webpackMerge(base, {
     }
   }
 })
+module.exports = config
