@@ -45,7 +45,7 @@
                </div>
            </div>
            <div class="todo-completed-wrapper">
-               <h2 style="line-height: 32px">Completed Tasks</h2>
+               <h2 style="line-height: 32px; margin-bottom: 20px">Completed Tasks</h2>
                <todo-completed
                        v-for="todo in doneTodos"
                        :key="todo.id"
