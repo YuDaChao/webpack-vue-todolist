@@ -1,2 +1,5 @@
 export const ADD_TODO = 'add_todo'
 export const DONE_TODO = 'done_todo'
+export const DONE_TODOS = 'done_todos'
+export const DELETE_TODO = 'delete_todo'
+export const DELETE_TODOS = 'delete_todos'

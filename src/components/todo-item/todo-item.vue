@@ -1,18 +1,42 @@
 <template>
     <Card dis-hover class="todo-card">
         <p slot="title">
-            <Checkbox size="large">学习 Vue</Checkbox>
+            <Checkbox
+                    size="large"
+                    :value="todo.id"
+                    @on-change="handleCheckTodo(todo)">
+                {{todo.title}}
+            </Checkbox>
         </p>
-        <a href="#" slot="extra" @click.prevent="changeLimit">
-            <Icon type="md-trash" size="24" color="#26a65b"/>
+        <a href="#" slot="extra">
+            <Icon @click.prevent="handleDeleteTodo(todo)" type="md-trash" size="24" color="#26a65b" />
+            <Icon @click.prevent="handleDoneTodo(todo)" type="md-checkmark-circle" size="24"color="#26a65b" />
         </a>
-        这是一段描述
+        {{todo.desc}}
     </Card>
 </template>
 
 <script>
   export default {
-    name: 'todo-item'
+    name: 'todo-item',
+    props: {
+      todo: {
+        type: Object,
+        required: true,
+        default: {}
+      }
+    },
+    methods: {
+      handleDeleteTodo (todo) {
+        this.$emit('handleDeleteTodo', todo)
+      },
+      handleCheckTodo (todo) {
+        this.$emit('handleCheckTodo', todo)
+      },
+      handleDoneTodo (todo) {
+        this.$emit('handleDoneTodo', todo)
+      }
+    }
   }
 </script>
 
@@ -37,6 +61,9 @@
         }
         .ivu-card-extra {
             top: 10px;
+        }
+        .ivu-icon-md-trash:hover, .ivu-icon-md-checkmark-circle:hover {
+            color: #fff !important;
         }
     }
 </style>

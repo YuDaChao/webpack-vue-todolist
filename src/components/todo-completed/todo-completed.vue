@@ -3,13 +3,20 @@
         <div class="icon-check">
             <Icon :type="isFocus ? 'md-trash' : 'ios-checkmark-circle-outline'" size="30" color="#fff" />
         </div>
-        <div class="content">学习 React</div>
+        <div class="content">{{todo.desc}}</div>
     </div>
 </template>
 
 <script>
   export default {
     name: 'todo-completed',
+    props: {
+      todo: {
+        type: Object,
+        required: true,
+        default: {}
+      }
+    },
     data () {
       return {
         isFocus: false
