@@ -4,8 +4,8 @@
   "description": "使用webpack搭建vue实现todolist",
   "main": "main.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server",
-    "build": "cross-env NODE_ENV=production webpack"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.js",
+    "build": "cross-env NODE_ENV=production webpack --config build/webpack.pro.js"
   },
   "keywords": [
     "webpack",
@@ -47,7 +47,8 @@
     "url-loader": "^1.1.1",
     "vue-loader": "^15.4.2",
     "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.1"
+    "webpack-dev-server": "^2.9.1",
+    "webpack-merge": "^4.1.4"
   },
   "browserslist": [
     "> 1%",

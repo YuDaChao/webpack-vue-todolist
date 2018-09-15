@@ -11,15 +11,11 @@ const extractLess = new ExtractTextPlugin({
 
 const isDev = process.env.NODE_ENV === 'development'
 
-
-let config = {
-  target: 'web',
-  entry: {
-    path: path.join(__dirname, 'src/main.js')
-  },
+module.exports = {
   output: {
-    filename: 'bundle.js',
-    path: path.join(__dirname, 'dist')
+    filename: '[name].js',
+    path: path.join(__dirname, '../dist'),
+    publicPath: "/public/"
   },
   module: {
     rules: [
@@ -93,30 +89,7 @@ let config = {
       }
     }),
     new HtmlPlugin({
-      template: path.join(__dirname, 'index.html')
+      template: path.join(__dirname, '../index.html')
     })
   ]
 }
-
-// 在开发环境下 做额外处理
-if (isDev) {
-  config.devtool = '#cheap-module-eval-source-map'
-  config.devServer = {
-    port: 8000,
-    host: '0.0.0.0',
-    overlay: {
-      errors: true
-    },
-    hot: true,
-    historyApiFallback: {
-      index: path.join(__dirname, 'dist/index.html')
-    }
-  }
-  config.plugins.push(
-    new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.HotModuleReplacementPlugin()
-  )
-}
-
-
-module.exports = config
