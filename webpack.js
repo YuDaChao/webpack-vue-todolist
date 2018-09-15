@@ -24,7 +24,8 @@ let config = {
   },
   output: {
     filename: '[name].js',
-    path: path.join(__dirname, 'dist')
+    path: path.join(__dirname, 'dist'),
+      publicPath: "/public/"
   },
   module: {
     rules: [
@@ -98,7 +99,7 @@ let config = {
       }
     }),
     new HtmlPlugin({
-      template: path.join(__dirname, 'index.html')
+      template: path.join(__dirname, 'public/index.html')
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
@@ -129,6 +130,7 @@ if (isDev) {
       errors: true
     },
     hot: true,
+    publicPath: '/public/',
     historyApiFallback: {
       index: path.join(__dirname, 'dist/index.html')
     }

@@ -4,7 +4,7 @@
   "description": "使用webpack搭建vue实现todolist",
   "main": "main.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.js",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.js",
     "build": "cross-env NODE_ENV=production webpack --config build/webpack.pro.js"
   },
   "keywords": [
