@@ -25,7 +25,7 @@ let config = {
   output: {
     filename: '[name].js',
     path: path.join(__dirname, 'dist'),
-      publicPath: "/public/"
+    publicPath: "/public/"
   },
   module: {
     rules: [

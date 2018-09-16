@@ -6,6 +6,7 @@
 
 <script>
   import Todo from './pages/todo'
+
   export default {
     name: 'App',
     components: {
